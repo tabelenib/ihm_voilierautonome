@@ -1,1 +1,1 @@
-# serveur_voilierautonome
+# ihm_voilierautonome
