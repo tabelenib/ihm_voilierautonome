@@ -1,4 +1,4 @@
-#include "client.h"
+#include "./../include/client.h"
 
 ClientTcp::ClientTcp(QString ip, quint16 port, QString _pseudo) {
     serverPort = port; // choix arbitraire (>1024)
