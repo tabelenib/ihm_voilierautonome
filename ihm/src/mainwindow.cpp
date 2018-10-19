@@ -29,7 +29,7 @@ void MainWindow::connexion() {
     if (ui->connexion->text() == QString("Connexion")) {
         client = new ClientTcp(QString("127.0.0.1"), 4000, QString("Etienne"));
         connect(client, SIGNAL(received_data(QString)), this, SLOT(msg_processing(QString)));
-        if (client->get_isRunning()){ui->connexion->setText("Déconnexion");}
+        ui->connexion->setText("Déconnexion");
     } else if (ui->connexion->text() == QString("Déconnexion")) {
         ui->connexion->setText("Connexion");
         delete client;
@@ -38,11 +38,8 @@ void MainWindow::connexion() {
 }
 
 void MainWindow::send() {
-    if(client->get_isRunning()){
+    if (client)
         client->send(get_msg());
-    }
-    else
-        ui->connexion->setText("Connexion");
 }
 
 

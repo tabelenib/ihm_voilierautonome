@@ -4,7 +4,6 @@ ClientTcp::ClientTcp(QString ip, quint16 port, QString _pseudo) {
     serverPort = port; // choix arbitraire (>1024)
     serverIp   = ip;
     pseudo     = _pseudo;
-    isRunning  = true;
 
     soc = new QTcpSocket(this);
 
@@ -21,15 +20,6 @@ ClientTcp::ClientTcp(QString ip, quint16 port, QString _pseudo) {
 
 ClientTcp::~ClientTcp() {
     delete soc;
-}
-
-void ClientTcp::run() {
-    while (isRunning) {
-        Message msg;
-        msg.setType(new string("B"));
-        send(msg.encodeData());
-        QThread::sleep(3);
-    }
 }
 
 void ClientTcp::send(QString msg) {
@@ -91,19 +81,14 @@ void ClientTcp::erreurSocket(QAbstractSocket::SocketError erreur) {
     switch(erreur) { // On affiche un message différent selon l'erreur qu'on nous indique
         case QAbstractSocket::HostNotFoundError:
             cout << "\nERREUR : le serveur n'a pas pu être trouvé. Vérifiez l'IP et le port." << endl;
-            isRunning  = false;
             break;
         case QAbstractSocket::ConnectionRefusedError:
             cout << "\nERREUR : le serveur a refusé la connexion. Vérifiez si le programme \"serveur\" a bien été lancé. Vérifiez aussi l'IP et le port." << endl;
-            isRunning  = false;
             break;
         case QAbstractSocket::RemoteHostClosedError:
             cout << "\nERREUR : le serveur a coupé la connexion." << endl;
-            isRunning  = false;
             break;
         default:
             cout << "\nERREUR : " << soc->errorString().toStdString() << endl;
     }
-    // Stop run method
-    isRunning = false;
 }

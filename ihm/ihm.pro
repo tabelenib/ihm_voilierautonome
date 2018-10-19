@@ -24,6 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
+DEPENDPATH += . include main src
+INCLUDEPATH += . include
+
 SOURCES += \
         main\main.cpp \
         src\mainwindow.cpp \

@@ -17,7 +17,6 @@ class ClientTcp : public QObject {
     public:
         ClientTcp(QString ip, quint16 port, QString _pseudo);
         ~ClientTcp();
-        void run();
     public slots:
         void donneesRecues();
         void connecte();
@@ -38,12 +37,9 @@ class ClientTcp : public QObject {
         quint16 tailleMessage;
         // Pseudo de l'utilisateur
         QString pseudo;
-
-        bool isRunning;
     public:
         // Method to send a message to the server
         void send(QString msg);
-        bool get_isRunning(){return isRunning;}
 };
 
 
