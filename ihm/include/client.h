@@ -36,9 +36,10 @@ class ClientTcp : public QObject {
         QString pseudo;
 
         bool isRunning;
-
+    public:
         // Method to send a message to the server
         void send(QString msg);
+        bool get_isRunning(){return isRunning;}
 };
 
 
