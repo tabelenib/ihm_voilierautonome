@@ -67,6 +67,8 @@ void ClientTcp::donneesRecues() {
     QString messageRecu;
     in >> messageRecu;
 
+    emit received_data(messageRecu);
+
     // On affiche le message sur la zone de Chat
     cout << "\nReceived: " << messageRecu.toStdString() << endl;
 

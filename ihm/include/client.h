@@ -18,11 +18,15 @@ class ClientTcp : public QObject {
         ClientTcp(QString ip, quint16 port, QString _pseudo);
         ~ClientTcp();
         void run();
-    private slots:
+    public slots:
         void donneesRecues();
         void connecte();
         void deconnecte();
         void erreurSocket(QAbstractSocket::SocketError erreur);
+
+    signals:
+        void received_data(QString);
+
     private:
         // Ip du serveur
         QString serverIp;
