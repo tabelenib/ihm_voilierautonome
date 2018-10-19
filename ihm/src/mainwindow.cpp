@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow() {
     delete ui;
     delete client;
+    delete _konsole;
+    delete _msg;
+    delete send_button;
 }
 
 void MainWindow::connexion() {
@@ -30,6 +33,7 @@ void MainWindow::connexion() {
     } else if (ui->connexion->text() == QString("Déconnexion")) {
         ui->connexion->setText("Connexion");
         delete client;
+        client = nullptr;
     }
 }
 
